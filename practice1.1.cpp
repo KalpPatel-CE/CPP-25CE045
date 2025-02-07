@@ -39,11 +39,13 @@ int main()
 {
     bank_acc b1, b2;
     b1.get_data();
+    b1.display_balance();
     b1.deposit_amount();
     b1.withdraw_amount();
     b1.display_balance();
     cout<< endl;
     b2.get_data();
+    b1.display_balance();
     b2.deposit_amount();
     b2.withdraw_amount();
     b2.display_balance();
