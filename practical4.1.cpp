@@ -37,5 +37,4 @@ int main(){
     {
         c[i].display();
     }
-    
 }
