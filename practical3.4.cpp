@@ -1,79 +1,64 @@
 #include <iostream>
-#include <string>
 using namespace std;
 
-class BankAccount {
-private:
-    string accountHolderName;
-    int accountNumber;
-    double balance;
-
-    static int accountCounter;
-
-public:
-    BankAccount(string name, double initialBalance) {
-        accountHolderName = name;
-        balance = initialBalance;
-        accountNumber = ++accountCounter;
+template <typename T>
+void display(T* arr, int size) {
+    cout << "Collection: ";
+    for (int i = 0; i < size; ++i) {
+        cout << arr[i] << " ";
     }
+    cout << endl;
+}
 
-    void deposit(double amount) {
-        if (amount > 0) {
-            balance += amount;
-            cout << "Deposit successful. New balance: Rs." << balance << endl;
-        } else {
-            cout << "Invalid deposit amount." << endl;
+template <typename T>
+T findMax(T* arr, int size) {
+    T max = arr[0];
+    for (int i = 1; i < size; ++i) {
+        if (arr[i] > max) {
+            max = arr[i];
         }
     }
+    return max;
+}
 
-    void withdraw(double amount) {
-        if (amount > 0 && amount <= balance) {
-            balance -= amount;
-            cout << "Withdrawal successful. New balance: Rs." << balance << endl;
-        } else {
-            cout << "Withdrawal failed. Insufficient funds or invalid amount." << endl;
-        }
+template <typename T>
+void reverse(T* arr, int size) {
+    for (int i = 0; i < size / 2; ++i) {
+        T temp = arr[i];
+        arr[i] = arr[size - i - 1];
+        arr[size - i - 1] = temp;
     }
-
-    void checkBalance() const {
-        cout << "Account Number: " << accountNumber << endl;
-        cout << "Account Holder: " << accountHolderName << endl;
-        cout << "Current Balance: Rs." << balance << endl;
-    }
-
-    static int getTotalAccounts() {
-        return accountCounter;
-    }
-};
-
-int BankAccount::accountCounter = 0;
+}
 
 int main() {
-    BankAccount account1("Kalp Patel", 1000.0);
-    BankAccount account2("Yash Shah", 1500.0);
+    int intArray[] = {3, 7, 2, 9, 4};
+    float floatArray[] = {2.5, 9.1, 4.3, 6.7};
+    char charArray[] = {'a', 'z', 'm', 'k'};
 
-    cout << "--- Initial Account Info ---" << endl;
-    account1.checkBalance();
-    cout << endl;
-    account2.checkBalance();
+    int intSize = sizeof(intArray) / sizeof(intArray[0]);
+    int floatSize = sizeof(floatArray) / sizeof(floatArray[0]);
+    int charSize = sizeof(charArray) / sizeof(charArray[0]);
 
-    cout <<endl<< ">> Transactions for Kalp Patel" << endl;
-    account1.deposit(200.0);
-    account1.withdraw(500.0);
-    account1.withdraw(2000.0);
-    cout << endl;
+    cout << "--- Integer Collection ---" << endl;
+    display(intArray, intSize);
+    cout << "Max: " << findMax(intArray, intSize) << endl;
+    reverse(intArray, intSize);
+    cout << "After Reversing: ";
+    display(intArray, intSize);
 
-    cout << ">> Transactions for Yash Shah" << endl;
-    account2.deposit(300.0);
-    account2.withdraw(100.0);
-    cout << endl;
+    cout << "\n--- Float Collection ---" << endl;
+    display(floatArray, floatSize);
+    cout << "Max: " << findMax(floatArray, floatSize) << endl;
+    reverse(floatArray, floatSize);
+    cout << "After Reversing: ";
+    display(floatArray, floatSize);
 
-    cout << "--- Final Account Info ---" << endl;
-    account1.checkBalance();
-    cout << endl;
-    account2.checkBalance();
-
-    cout << "\nTotal Bank Accounts Created: " << BankAccount::getTotalAccounts() << endl;
+    cout << "\n--- Char Collection ---" << endl;
+    display(charArray, charSize);
+    cout << "Max: " << findMax(charArray, charSize) << endl;
+    reverse(charArray, charSize);
+    cout << "After Reversing: ";
+    display(charArray, charSize);
 
     return 0;
 }
