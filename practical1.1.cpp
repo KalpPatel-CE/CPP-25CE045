@@ -45,7 +45,7 @@ public:
 };
 
 int main() {
-    BankAccount account1("John Doe", 1001, 500.0);
+    BankAccount account1("kalp patel", 1001, 500.0);
 
     account1.displayAccountInfo();
 
