@@ -105,6 +105,7 @@ int main()
                 cout << "Total value of inventory: ₹" << store.calculateTotalValue() << endl;
                 break;
             case 5:
+                cout<<"\n24CE045_kalp\n";
                 return 0;
             default:
                 cout << "Invalid choice. Try again." << endl;
